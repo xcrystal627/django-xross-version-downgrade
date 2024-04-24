@@ -1,0 +1,138 @@
+<div class="mt-[40px] tb:mt-[100px] pb-[60px] max-w-[1280px] w-full mx-auto px-[20px]">
+    <h2 class="text-[28px] md:text-[48px]  tb:text-[75px] text-center font-source text-[#111]">
+        申し込みフォーム
+    </h2>
+    <p class="mt-[20px] md:mt-[50px] text-[12px] md:text-[16px] text-center">
+        入力フォームに必要事項をご記入いただき、その後、申込ボタンを押してください。<br>
+        必ず入力していただく項目には必須マークを表示しております。
+    </p>
+    <form id="contact" action="{% url 'send_mail' %}" method="post">
+        {% csrf_token %}
+
+        <div class="mt-[20px] md:mt-[50px] text-[12px] md:text-[16px] border-[1px] border-[#111] px-[15px] md:px-[30px] tb:px-[55px] py-[20px] tb:py-[32px]">
+            <div class="border-b-[1px] border-b-[#111] py-[18px] gb:py-[30px] grid grid-cols-1 md:grid-cols-5">
+                <div class="col-span-1 md:col-span-2 text-[16px] tb:text-[22px]">
+                    お名前
+                </div>
+                <div class="col-span-1 md:col-span-3">
+                    <Input id="name" name="name" placeholder="山田太郎" class="outline-none w-full text-[22px] border-[1px] border-[#111] py-[2px] px-[9px] tb:px-[15px]" />
+                </div>
+            </div>
+            <div class="border-b-[1px] border-b-[#111] py-[18px] gb:py-[30px] grid grid-cols-1 md:grid-cols-5">
+                <div class="col-span-1 md:col-span-2 text-[16px] tb:text-[22px] flex justify-between items-center pb-[7px] md:pb-0">
+                    メールアドレス
+                    <span class="bg-[#D63C61] text-white  text-[12px] md:text-[16px] py-[2px] px-[6px] md:px-[10px] mr-[42px]">
+                        必須
+                    </span>
+                </div>
+                <div class="col-span-1 md:col-span-3">
+                    <Input id="email" name="email" placeholder="sample@xrosspoint.co.jp" class="outline-none w-full text-[22px] border-[1px] border-[#111] py-[2px] px-[9px] tb:px-[15px]" />
+                    <p class="hidden duration-300 transition-all text-red-400 text-[12px]" id="email-error" >
+                        メールアドレスを入力してください。
+                    </p>
+                </div>
+            </div>
+            <div class="border-b-[1px] border-b-[#111] py-[18px] gb:py-[30px] grid grid-cols-1 md:grid-cols-5">
+                <div class="col-span-1 md:col-span-2 text-[16px] tb:text-[22px] flex justify-between items-center pb-[7px] md:pb-0">
+                    電話番号
+                    <span class="bg-[#D63C61] text-white  text-[12px] md:text-[16px] py-[2px] px-[6px] md:px-[10px] mr-[42px]">
+                        必須
+                    </span>
+                </div>
+                <div class="col-span-1 md:col-span-3">
+                    <Input id="phone" name="phone" placeholder="03-1234-5678" class="outline-none w-full text-[22px] border-[1px] border-[#111] py-[2px] px-[9px] tb:px-[15px]" />
+                    <p class="hidden duration-300 transition-all text-red-400 text-[12px]" id="phone-error" >
+                        電話番号を入力してください。
+                    </p>
+                </div>
+            </div>
+            <div class="border-b-[1px] border-b-[#111] py-[18px] gb:py-[30px] grid grid-cols-1 md:grid-cols-5">
+                <div class="col-span-1 md:col-span-2 text-[16px] tb:text-[22px]  pb-[7px] md:pb-0">
+                    転職意欲
+                </div>
+                <div class="col-span-1 md:col-span-3">
+                    <Input id="description" name="description" placeholder="" class="outline-none w-full text-[22px] border-[1px] border-[#111] py-[2px] px-[9px] tb:px-[15px]" />
+                </div>
+            </div>
+            <div class="border-b-[1px] border-b-[#111] py-[18px] gb:py-[30px] grid grid-cols-1 md:grid-cols-5">
+                <div class="col-span-1 md:col-span-2 text-[16px] tb:text-[22px] flex justify-between items-center pb-[7px] md:pb-0">
+                    個人情報取扱確認
+                    <span class="bg-[#D63C61] text-white  text-[12px] md:text-[16px] py-[2px] px-[6px] md:px-[10px] mr-[42px]">
+                        必須
+                    </span>
+                </div>
+                <div class="col-span-1 md:col-span-3">
+                    <p class="text-[16px] tb:text-[22px]">
+                        フォーム記入に当たり、個人情報の取扱いについてこちらをご覧ください。
+                    </p>
+                    <input type="checkbox" id="agree" name="agree" class="mt-[5px] outline-none" >
+                    <label for="agree">同意します</label>
+                    <p class="hidden duration-300 transition-all text-red-400 text-[12px]" id="agree-error" >
+                        ご確認ください。
+                    </p>
+                </div>
+            </div>
+            <div class="mt-[20px] tb:mt-[32px] flex justify-center">
+                <button type="submit" class=" relative py-[10px] inline-block hover:shadow-none duration-300 transition-all cursor-pointer shadow-[3px_3px_0px_0px_rgba(112,112,112)]  
+                        text-[14px] tb:text-[20px] font-medium bg-[#D63C61] text-white rounded-[10px]">
+                    <p class="text-center px-[40px] sm:px-[100px]">
+                        無料相談会に今すぐ申し込む
+                    </p>
+                    <div class="absolute top-1/2 -translate-y-1/2 right-[10px] rounded-full bg-white w-[20px] tb:w-[25px] h-[20px] tb:h-[25px] flex justify-center items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="10" viewBox="0 0 9.006 7.799">
+                            <path id="Path_62" data-name="Path 62" d="M950.4,502.232l4.5-7.8h-9.006Z" transform="translate(-945.893 -494.433)"/>
+                        </svg>                      
+                    </div>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    
+    const agree_element = document.getElementById('agree');
+    $(document).ready(function() {
+        $('#contact').submit(function(e) {
+            e.preventDefault(); 
+
+            $('#email-error').addClass('hidden');
+            $('#phone-error').addClass('hidden');
+            $('#agree-error').addClass('hidden');
+
+            
+            var email = $('#email').val();
+            var phone = $('#phone').val();
+            
+            if (email === '') {
+                $('#email-error').removeClass('hidden');
+                return;
+            }
+
+            if(phone === '') {
+                $('#phone-error').removeClass('hidden');
+                return;
+            }
+
+            if(!agree_element.checked) {
+                $('#agree-error').removeClass('hidden');
+                return;
+            }
+            const form = document.getElementById('contact');
+            const formData = new FormData(form);
+
+            fetch("{% url 'send_mail' %}", {
+                method: 'POST',
+                body: formData
+            })
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((error) => {
+            });
+
+        });
+    });
+
+</script>

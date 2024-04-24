@@ -1,0 +1,44 @@
+{% load static %}
+
+<div class="pt-[15px] md:pt-[55px]">
+    <div class="max-w-[1280px] mx-auto w-full">
+        <div class="flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="62.2" height="85.139" viewBox="0 0 62.2 85.139">
+                <line id="Line_2" data-name="Line 2" x2="60.893" y2="84.194" transform="translate(0.653 0.472)" fill="none" stroke="#266891" stroke-miterlimit="10" stroke-width="1.612"/>
+            </svg>          
+            <h2 class="text-[24px] md:text-[48px] text-center font-bold text-[#000] md:px-[33px]">
+                こんなお悩み<br>
+                抱えていませんか？
+            </h2>
+            <svg xmlns="http://www.w3.org/2000/svg" width="62.2" height="85.139" viewBox="0 0 62.2 85.139">
+                <line id="Line_1" data-name="Line 1" x1="60.893" y2="84.194" transform="translate(0.653 0.472)" fill="none" stroke="#266891" stroke-miterlimit="10" stroke-width="1.612"/>
+            </svg>          
+        </div>
+        <div class="mt-[5px] flex justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="169.602" height="3.731" viewBox="0 0 169.602 3.731">
+                <g id="Group_9" data-name="Group 9" transform="translate(-415.199 -762.471)">
+                  <g id="Group_154" data-name="Group 154">
+                    <rect id="Rectangle_3" data-name="Rectangle 3" width="100.618" height="3.731" transform="translate(415.199 762.471)" fill="#0b69bc" opacity="0.8"/>
+                    <rect id="Rectangle_4" data-name="Rectangle 4" width="68.984" height="3.731" transform="translate(515.817 762.471)" fill="#5ca4d1" opacity="0.8"/>
+                  </g>
+                </g>
+            </svg>          
+        </div>
+    </div>
+    <div class="mt-[20px] md:mt-[50px] bg-[#CCC] trouble-bg">
+        <div class="max-w-[1280px] mx-auto w-full py-[20px] px-[20px] tb:px-[90px] grid grid-cols-8">
+            <div class="col-span-8 sm:col-span-5 space-y-[12px] my-auto">
+                {% include 'components/atoms/trouble-item.html' with item_description='会社が閉鎖的で、もっと闊達な環境で働きたい' %}  
+                {% include 'components/atoms/trouble-item.html' with item_description='もっと専門性を生かして他の企業で働きたい' %}  
+                {% include 'components/atoms/trouble-item.html' with item_description='給料が安く将来が見えない' %}  
+                {% include 'components/atoms/trouble-item.html' with item_description='成長できる環境が欲しい' %}  
+                {% include 'components/atoms/trouble-item.html' with item_description='転職をしたいが何をしたらいいかわからない' %}  
+                {% include 'components/atoms/trouble-item.html' with item_description='大手転職会社を使っているが、中々受からない' %}  
+            </div>
+            <div class="col-span-8 sm:col-span-3 flex justify-center items-center">
+                <img src="{% static '/img/onayami_men.png' %}" class="sm:w-full h-[320px] sm:h-auto" alt="onayami_men">
+            </div>
+        </div>
+    </div>
+      
+</div>

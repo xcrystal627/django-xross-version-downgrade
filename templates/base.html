@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}" />
+        <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+        <link   rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+        <title>Xross point</title>
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js "></script>
+    <script>      
+        var swiperMain = new Swiper(".main-swiper", {
+            loop: false,
+            slidesPerView: 1,
+            spaceBetween: 5,
+            lockClass: false,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },                     
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },   
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 40
+                },
+            }
+        });
+
+        var swiperRecruiment = new Swiper(".recruitment-swiper", {
+            loop: false,
+            slidesPerView: 1,
+            centeredSlides: true,
+            spaceBetween: 5,
+            lockClass: false,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },                     
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },  
+            breakpoints: {
+                768: {
+                    slidesPerView: 1.5,
+                    centeredSlides: true,
+                },
+            }
+        });
+        
+      </script>
+</html>

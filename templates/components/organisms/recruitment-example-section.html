@@ -1,0 +1,78 @@
+{% load static %}
+
+<div class="pt-[15px] pb-[30px] tb:pb-[74px] md:pt-[55px]">
+    <div class="max-w-[1280px] mx-auto w-full px-[20px] ">
+        <div>
+            <p class="text-[#000] text-[32px] sm:text-[56px] tb:text-[74px] text-center leading-[1.3]">
+                求人例
+            </p>
+            <div class="mt-[5px] flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="169.602" height="3.731" viewBox="0 0 169.602 3.731">
+                    <g id="Group_9" data-name="Group 9" transform="translate(-415.199 -762.471)">
+                      <g id="Group_154" data-name="Group 154">
+                        <rect id="Rectangle_3" data-name="Rectangle 3" width="100.618" height="3.731" transform="translate(415.199 762.471)" fill="#0b69bc" opacity="0.8"/>
+                        <rect id="Rectangle_4" data-name="Rectangle 4" width="68.984" height="3.731" transform="translate(515.817 762.471)" fill="#5ca4d1" opacity="0.8"/>
+                      </g>
+                    </g>
+                </svg>          
+            </div>   
+        </div>
+        <div class="mt-[46px] relative sm:px-[30px]">
+            <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="gap-6 swiper recruitment-swiper">
+                <div class="swiper-wrapper">
+                    {% for data in recruit_examples %}   
+                        <div class="swiper-slide text-center min-w-[250px] font-source">
+                            <div class="md:px-[10%]">
+                                <div class="border-[1px] border-[#111] px-[20px] tb:px-[30px] py-[20px]" >
+                                    <h3 class="text-[18px] md:text-[26px] text-[#111] font-medium text-left border-b-[1px] border-b-[#111]">
+                                        {{ data.title }}
+                                    </h3>
+                                    <div class="mt-[15px] grid md:grid-cols-2">
+                                        <div class="col-span-1 text-[12px] md:text-[16px] text-left">
+                                            <p>
+                                                会社名:{{data.company_name}}
+                                            </p>
+                                            <p class="mt-[13px]">
+                                                業務内容:{{data.business_content}}
+                                            </p>
+                                            <p class="mt-[13px]">
+                                                募集ポジション:{{data.position}}
+                                            </p>
+                                            <p class="mt-[13px]">
+                                                勤務地:{{data.location}}
+                                            </p>
+                                            <p class="mt-[13px]">
+                                                応募想定年齢:{{data.applicant_age}}
+                                            </p>
+                                            <p class="mt-[13px]">
+                                                理論年収:{{data.annual_fee}}
+                                            </p>
+                                        </div>
+                                        <div class="mt-[20px] md:mt-0 col-span-1 flex justify-center items-center">
+                                            <img src="/media/{{ data.picture }}" class="w-full" alt="picture">
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>  
+                    {% endfor %}
+                 
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="mt-[32px] tb:mt-[68px] flex justify-center">
+            <a class=" relative py-[10px] inline-block hover:shadow-none duration-300 transition-all cursor-pointer shadow-[3px_3px_0px_0px_rgba(112,112,112)]  
+                     text-[14px] tb:text-[20px] font-medium bg-[#D63C61] text-white rounded-[10px]">
+                <p class="text-center px-[40px] sm:px-[100px]">
+                    無料相談会に今すぐ申し込む
+                </p>
+                <div class="absolute top-1/2 -translate-y-1/2 right-[10px] rounded-full bg-white w-[20px] tb:w-[25px] h-[20px] tb:h-[25px] flex justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="10" viewBox="0 0 9.006 7.799">
+                        <path id="Path_62" data-name="Path 62" d="M950.4,502.232l4.5-7.8h-9.006Z" transform="translate(-945.893 -494.433)"/>
+                    </svg>                      
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

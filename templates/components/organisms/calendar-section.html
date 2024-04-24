@@ -1,0 +1,159 @@
+<div class="max-w-[1280px] w-full mx-auto px-[20px]">
+    <div class="flex justify-between items-baseline">
+        <div class="flex justify-start items-baseline font-bold">
+            <h1 class="text-[80px] font-medium">{{month}}</h1>
+            <p class="text-[32px]">
+                {{month_name}}
+            </p>
+        </div>
+        <p class="text-[30px]">
+            {{year}}
+        </p>
+    </div>
+    
+    <table id="calendar" class="w-full">
+        <thead>
+            <tr class="uppercase pb-[5px]">
+                <th class="text-red-800 w-[14.28%] pb-[5px]">Sun</th>
+                <th class="w-[14.28%] pb-[5px]">Mon</th>
+                <th class="w-[14.28%] pb-[5px]">Tue</th>
+                <th class="w-[14.28%] pb-[5px]">Wed</th>
+                <th class="w-[14.28%] pb-[5px]">Thu</th>
+                <th class="w-[14.28%] pb-[5px]">Fri</th>
+                <th class="text-sky-700 w-[14.28%] pb-[5px]">Sat</th>
+            </tr>
+        </thead>
+        <tbody id="calendar-body" class="border-[1px] border-[#111] font-medium"></tbody>
+    </table>
+    
+</div>
+
+<script>
+    var consultationDates = JSON.parse('{{ calendar }}');
+
+    const year = "{{ year }}";
+    const month = "{{ month }}";
+
+    var days = [];
+    Array(5).fill(0).map((_, weekIndex) => {
+
+        //if weekIndex is 0, calculate prev month days' date and weekday, and get this month days's date and weekday
+        if (weekIndex == 0) {
+            const firstDay = new Date(year, month - 1, 1)
+            const firstDayWeekday = firstDay.getDay()
+
+            //get last month days depends on firstDayWeekday
+            const prevMonthLastDate = new Date(year, month - 1, 0)
+            const prevMonthLastDay = prevMonthLastDate.getDate()
+            const prevMonthLastDateArray = [...new Array(firstDayWeekday)]
+                .map((_, index) => prevMonthLastDay - index)
+                .reverse()
+
+            //get this week days depends on firstDayWeekday
+            const thisWeekDateArray = [...new Array(7 - firstDayWeekday)].map((_, index) => index + 1)
+
+            //combine prev month days and this month days
+            const prevMonthDays = prevMonthLastDateArray.map(date => ({
+                year: year,
+                month: month - 1,
+                date: date,
+            }))
+            const thisMonthDays = thisWeekDateArray.map(date => ({
+                year: year,
+                month: month,
+                date: date,
+            }))
+            days.push(...prevMonthDays, ...thisMonthDays)
+        }
+
+        //if weekIndex is 1,2,3, calculate this month days' date and weekday
+        if (weekIndex == 1 || weekIndex == 2 || weekIndex == 3) {
+            const firstDayOfMonth = new Date(year, month - 1, 1)
+            const firstDayOfMonthWeekday = firstDayOfMonth.getDay()
+
+            //get first day of this week of this month
+            const firstDay = new Date(
+                year,
+                month - 1,
+                7 - firstDayOfMonthWeekday + (weekIndex - 1) * 7 + 1,
+            )
+            const firstDayWeekday = firstDay.getDay()
+
+            //get this week days depends on firstDayWeekday
+            const thisWeekDateArray = [...new Array(7)].map((_, index) => firstDay.getDate() + index)
+
+            //combine prev month days and this month days
+            const thisMonthDays = thisWeekDateArray.map(date => ({
+                year: year,
+                month: month,
+                date: date,
+            }))
+            days.push(...thisMonthDays)
+        }
+
+        //if weekIndex is 4, calculate next month days' date and weekday
+        if (weekIndex == 4) {
+            //get last days of this month
+            const lastDayOfMonth = new Date(year, month, 0)
+            const lastDayOfMonthWeekday = lastDayOfMonth.getDay()
+
+            //get lastweekdays depends on lastDayOfMonthWeekday
+            const thisMonthDateArray = [...new Array(lastDayOfMonthWeekday + 1)]
+                .map((_, index) => lastDayOfMonth.getDate() - index)
+                .reverse()
+
+            //get weekdays of next month in first weeks depends on lastDayOfMonthWeekday
+            const nextMonthDateArray = [...new Array(7 - lastDayOfMonthWeekday - 1)].map(
+                (_, index) => index + 1,
+            )
+
+            //combine thisMonthDateArray and nextMonthDate Array
+            const thisMonthDays = thisMonthDateArray.map(date => ({
+                year: year,
+                month: month,
+                date: date,
+            }))
+            const nextMonthDays = nextMonthDateArray.map(date => ({
+                year: year,
+                month: month + 1,
+                date: date,
+            }))
+            days.push(...thisMonthDays, ...nextMonthDays)
+        }
+    })
+    
+    var calendarBody = document.getElementById("calendar-body");
+    var row = document.createElement("tr");
+    days.map((day, idx) => {
+        if((idx+1) % 7 == 1 ) {
+            row = document.createElement("tr");
+        }
+        var cell = document.createElement("td");
+        cell.classList.add('border-[1px]');
+        cell.classList.add('border-[#111]');
+
+        if((idx+1) % 7 == 1 ) {
+            cell.classList.add('text-red-800');
+        }
+
+        if((idx+1) % 7 == 0 ) {
+            cell.classList.add('text-sky-700');
+        }
+
+        if(day.month == (month - 1) || day.month == (month + 1)) {
+            cell.classList.add('text-gray')
+        }
+
+        if(consultationDates.indexOf(day.date) !== -1 && day.month == month) {
+            cell.classList.add('text-red-800')
+        }
+
+        var content = document.createElement("p");
+        content.classList.add('calendar-day');
+        content.textContent = day.date;
+        cell.appendChild(content);
+        row.appendChild(cell);
+        calendarBody.appendChild(row);
+    })
+
+</script>
